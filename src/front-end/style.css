@@ -85,7 +85,7 @@ input:-webkit-autofill {
   -webkit-text-fill-color: var(--input-text) !important;
 }
 
-iframe {
+.cko iframe {
   /* Fix mobile Safari bug */
   height: var(--input-height) !important;
 }
@@ -100,7 +100,7 @@ iframe {
   width: var(--payment-form-width);
   position: absolute;
   left: 50%;
-  top: 46.5%;
+  top: 45%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
@@ -777,4 +777,29 @@ input[type="checkbox"]:checked + label:after {
 
 .back:hover {
   color: var(--label-focus);
+}
+
+.klarnaDiv {
+  display: inline-block;
+  position: relative;
+  width: 600px;
+  margin: 60px auto 0;
+}
+
+#klarna-form {
+  text-align: center;
+}
+
+.klarna-btn {
+  border-radius: 50px;
+  box-shadow: 0 2px 5px 0 var(--input-border-focus);
+  background-color: #ffb2c7;
+  font-weight: 600;
+  font-size: 15px;
+  height: var(--input-height);
+  width: 105px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  color: var(--back-button);
 }

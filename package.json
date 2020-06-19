@@ -7,6 +7,7 @@
     "start": "nodemon -e js,html,css"
   },
   "dependencies": {
+    "axios": "0.19.2",
     "body-parser": "^1.19.0",
     "checkout-sdk-node": "^1.0.12",
     "cors": "^2.8.4",
@@ -16,6 +17,6 @@
     "socket.io": "^2.3.0"
   },
   "keywords": [],
-  "author": "Stephen Gilbert",
+  "author": "Manos KP",
   "license": "ISC"
 }

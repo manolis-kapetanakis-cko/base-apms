@@ -37,7 +37,7 @@
         <div class="input-wrapper card-number">
           <label id="card-label">Card Number</label>
           <div class="card-and-scheme">
-            <div class="card-number-frame"></div>
+            <div class="cko card-number-frame"></div>
             <img id="card-scheme" />
           </div>
           <div class="hint card-hint hide">
@@ -49,7 +49,7 @@
           <!-- Expiry Date -->
           <div class="input-wrapper expiry-date">
             <label id="date-label">Expiry Date</label>
-            <div class="expiry-date-frame"></div>
+            <div class="cko expiry-date-frame"></div>
             <div class="hint expiry-date-hint hide">
               Future Date<span class="line"></span>
             </div>
@@ -57,7 +57,7 @@
           <!-- Cvv -->
           <div class="input-wrapper cvv">
             <label id="cvv-label">CVV</label>
-            <div class="cvv-frame"></div>
+            <div class="cko cvv-frame"></div>
             <div class="hint cvv-hint hide"><span class="line"></span>100</div>
           </div>
         </div>
@@ -110,18 +110,20 @@
           onclick="payAPM('paypal')"
           src="images/card-icons/paypal-icon.png"
         />
-        <!-- <input type="image" class="apmImg" alt="klarna"
-          onclick="klarnaAuth()"
-          src="images/card-icons/klarna.png" /> -->
+        <input
+          type="image"
+          class="apmImg"
+          alt="klarna"
+          onclick="window.location='./paywithklarna'"
+          src="images/card-icons/klarna.png"
+        />
       </div>
     </div>
 
     <!-- Checkout.com CDN -->
     <script src="https://cdn.checkout.com/js/framesv2.min.js"></script>
-
     <!-- Our scripts -->
     <script src="./payment/script.js"></script>
     <script src="./payment/frames.js"></script>
-    <!-- <script src="./payment/klarnaAuth.js"></script> -->
   </body>
 </html>

@@ -1,6 +1,10 @@
 const route = require("express").Router();
+const axios = require("axios");
+
 const { Checkout } = require("checkout-sdk-node");
 const cko = new Checkout("sk_test_07fa5e52-3971-4bab-ae6b-a8e26007fccc");
+const SK = "sk_test_07fa5e52-3971-4bab-ae6b-a8e26007fccc";
+const API = "https://api.sandbox.checkout.com/";
 
 route.post("/payWithToken", async (req, res) => {
   const payment = await cko.payments.request({
@@ -81,9 +85,15 @@ route.post("/payWithAPM", async (req, res) => {
   res.send(payment);
 });
 
-// KLARNA
+// Get payment details by cko-session-id
+route.post("/getPaymentBySession", async (req, res) => {
+  const details = await cko.payments.get(req.body.sessionId);
+  res.send(details);
+});
+
+//KLARNA
 route.post("/klarnaSession", async (req, res) => {
-  console.log("BE Initialising Klarna Session");
+  console.log("Initialising Klarna Session");
   let payment;
   try {
     payment = await axios.post(
@@ -119,10 +129,9 @@ route.post("/klarnaSession", async (req, res) => {
   }
 });
 
-route.post("/klarnaPayment", async (req, res) => {
+route.post("/klarnaPayment/", async (req, res) => {
   let authorization_token = req.body.authorization_token;
-  console.log("Initialising Klarna Payment: " + authorization_token);
-
+  console.log("\nInitialising Klarna Payment: " + authorization_token);
   let payment;
   try {
     payment = await axios.post(
@@ -130,36 +139,33 @@ route.post("/klarnaPayment", async (req, res) => {
       {
         amount: 1000,
         currency: "GBP",
-        capture: false,
         source: {
           type: "klarna",
           authorization_token: authorization_token,
           locale: "en-GB",
           purchase_country: "GB",
           tax_amount: 0,
-          billing_address: {
-            given_name: "John",
-            family_name: "Doe",
-            email: "johndoe@email.com",
-            title: "Mr",
-            street_address: "13 New Burlington St",
-            street_address2: "Apt 214",
-            postal_code: "W13 3BG",
-            city: "London",
-            phone: "01895808221",
-            country: "GB"
-          },
-          customer: {
-            date_of_birth: "1970-01-01",
-            gender: "male"
-          },
+          billing_address: [
+            {
+              given_name: "John",
+              family_name: "Doe",
+              email: "johndoe@email.com",
+              title: "Mr",
+              street_address: "13 New Burlington St",
+              street_address2: "Apt 214",
+              postal_code: "W13 3BG",
+              city: "London",
+              phone: "01895808221",
+              country: "GB"
+            }
+          ],
           products: [
             {
-              name: "Battery Power Pack",
+              name: "Brown leather belt",
               quantity: 1,
-              unit_price: 1000,
+              unit_price: 2499,
               tax_rate: 0,
-              total_amount: 1000,
+              total_amount: 2499,
               total_tax_amount: 0
             }
           ]
@@ -175,14 +181,10 @@ route.post("/klarnaPayment", async (req, res) => {
     console.log(payment.data);
     res.status(200).send(payment.data);
   } catch (err) {
+    console.log("ERR: \n");
+    console.log(err.response.data);
     res.status(500).send(err.response);
   }
-});
-
-// Get payment details by cko-session-id
-route.post("/getPaymentBySession", async (req, res) => {
-  const details = await cko.payments.get(req.body.sessionId);
-  res.send(details);
 });
 
 module.exports = route;
