@@ -807,3 +807,6 @@ input[type="checkbox"]:checked + label:after {
 #cards-payment {
   position: absolute;
 }
+#payment-options {
+  color: #acacac;
+}
