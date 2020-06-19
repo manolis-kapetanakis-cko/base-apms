@@ -98,9 +98,9 @@ input:-webkit-autofill {
 
 #payment-form {
   width: var(--payment-form-width);
-  position: absolute;
+  position: relative;
   left: 50%;
-  top: 45%;
+  margin-top: 100px;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
@@ -590,7 +590,7 @@ input[type="checkbox"]:checked + label:after {
   height: 35px;
 }
 
-.ideal-button {
+.apm-buttons {
   height: 40px;
   line-height: 40px;
   text-align: left;
@@ -598,7 +598,7 @@ input[type="checkbox"]:checked + label:after {
   margin-top: 20px;
 }
 
-.ideal-button span,
+.apm-buttons span,
 .text-appear span {
   display: inline-block;
   vertical-align: middle;
@@ -802,4 +802,8 @@ input[type="checkbox"]:checked + label:after {
   cursor: pointer;
   position: relative;
   color: var(--back-button);
+}
+
+#cards-payment {
+  position: absolute;
 }

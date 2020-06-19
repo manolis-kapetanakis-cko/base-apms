@@ -20,8 +20,14 @@ const switcher = document.getElementById("theme-switch");
 const outcome = document.getElementById("outcome");
 const error = document.querySelector(".error");
 const errorMessage = document.getElementById("error-hint");
+const cardsDiv = document.getElementById("cards-payment");
+const apmsDiv = document.getElementById("apms-payment");
+const idealDiv = document.getElementById("ideal-payment");
+
 var PAYMENT_ID = "";
 var theme = "";
+
+let paymentType;
 
 const crossVisible =
   '<svg class="cross" viewBox="0 0 50 50"><path class="cross draw" fill="none" d="M16 16 34 34 M34 16 16 34"></path></svg>';
@@ -228,4 +234,22 @@ const showCross = () => {
 const hideCross = () => {
   outcome.classList.remove("cross");
   outcome.innerHTML = crossHidden;
+};
+
+const paymentOption = type => {
+  console.log(type);
+  paymentType = type;
+  if (type === "cards") {
+    cardsDiv.classList.remove("hide");
+    apmsDiv.classList.add("hide");
+    idealDiv.classList.add("hide");
+  } else if (type === "apms") {
+    cardsDiv.classList.add("hide");
+    apmsDiv.classList.remove("hide");
+    idealDiv.classList.add("hide");
+  } else {
+    cardsDiv.classList.add("hide");
+    apmsDiv.classList.add("hide");
+    idealDiv.classList.remove("hide");
+  }
 };
