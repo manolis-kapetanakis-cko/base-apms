@@ -231,7 +231,7 @@ Frames.addEventHandler(Frames.Events.CARD_TOKENIZED, event => {
 });
 
 // When the pay button is clicked
-payButton.addEventListener("click", function(event) {
+payButton.addEventListener("click", function (event) {
   if (payButton.innerHTML.includes("New")) {
     cleanState();
   } else {

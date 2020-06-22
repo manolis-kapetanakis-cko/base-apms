@@ -23,6 +23,9 @@ const errorMessage = document.getElementById("error-hint");
 const cardsDiv = document.getElementById("cards-payment");
 const apmsDiv = document.getElementById("apms-payment");
 const idealDiv = document.getElementById("ideal-payment");
+const idealSelector = document.querySelector("#ideal-selector");
+const idealBtn = document.getElementById("ideal-pay");
+const klarnaDiv = document.getElementById("klarna-payment");
 
 var PAYMENT_ID = "";
 var theme = "";
@@ -133,8 +136,8 @@ const http = ({ method, route, body }, callback) => {
 
 // For connection timeout error handling
 const timeout = (ms, promise) => {
-  return new Promise(function(resolve, reject) {
-    setTimeout(function() {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
       reject(new Error("Connection timeout"));
     }, ms);
     promise.then(resolve, reject);
@@ -166,7 +169,7 @@ socket.on("webhook", webhookBody => {
 
   toastBar.append(newToast);
   newToast.classList.add("show");
-  setTimeout(function() {
+  setTimeout(function () {
     newToast.classList.remove("show");
     newToast.outerHTML = "";
   }, 5000);
@@ -237,19 +240,26 @@ const hideCross = () => {
 };
 
 const paymentOption = type => {
-  console.log(type);
   paymentType = type;
   if (type === "cards") {
     cardsDiv.classList.remove("hide");
     apmsDiv.classList.add("hide");
     idealDiv.classList.add("hide");
+    klarnaDiv.classList.add("hide");
   } else if (type === "apms") {
     cardsDiv.classList.add("hide");
     apmsDiv.classList.remove("hide");
     idealDiv.classList.add("hide");
-  } else {
+    klarnaDiv.classList.add("hide");
+  } else if (type === "ideal") {
     cardsDiv.classList.add("hide");
     apmsDiv.classList.add("hide");
     idealDiv.classList.remove("hide");
+    klarnaDiv.classList.add("hide");
+  } else {
+    cardsDiv.classList.add("hide");
+    apmsDiv.classList.add("hide");
+    idealDiv.classList.add("hide");
+    klarnaDiv.classList.remove("hide");
   }
 };

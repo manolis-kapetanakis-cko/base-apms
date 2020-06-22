@@ -6,7 +6,6 @@ http(
     body: {}
   },
   data => {
-    console.log("IDEAL DATA:");
     let issuersArr = data.countries[0].issuers;
     let idealLabel = document.createElement("LABEL");
 

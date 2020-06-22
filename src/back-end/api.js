@@ -18,6 +18,45 @@ route.post("/payWithToken", async (req, res) => {
   res.send(payment);
 });
 
+route.get("/getIdealIssuers", async (req, res) => {
+  console.log("Ideal Issuers Server");
+  let issuers;
+  try {
+    issuers = await axios.get(
+      "https://api.sandbox.checkout.com/ideal-external/issuers",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: SK
+        }
+      }
+    );
+    // console.log(issuers.data.countries[0].issuers.length);
+    // console.log(issuers.data.countries);
+    res.status(200).send(issuers.data);
+  } catch (err) {
+    res.status(500).send(err.response);
+  }
+});
+
+route.post("/payWithIdeal", async (req, res) => {
+  let issuer_id = req.body.issuer_id;
+  let payment;
+  payment = await cko.payments.request({
+    source: {
+      type: "ideal",
+      bic: issuer_id,
+      description: "ORD50234E89",
+      language: "nl"
+    },
+    currency: "EUR",
+    amount: 2000, // pence
+    success_url: req.body.url + "/success",
+    failure_url: req.body.url + "/fail"
+  });
+  res.send(payment);
+});
+
 route.post("/payWithAPM", async (req, res) => {
   let option = req.body.option;
   console.log(option);
@@ -171,6 +210,7 @@ route.post("/klarnaPayment/", async (req, res) => {
           ]
         }
       },
+
       {
         headers: {
           "Content-Type": "application/json",

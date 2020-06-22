@@ -71,10 +71,7 @@ body {
 
 /* Set autofill colour */
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px var(--background) inset !important;
   box-shadow: 0 0 0 30px var(--background) inset !important;
 }
@@ -97,17 +94,24 @@ input:-webkit-autofill {
 /* Payment Form */
 
 #payment-form {
-  width: var(--payment-form-width);
+  /* width: var(--payment-form-width);
   position: relative;
   left: 50%;
   margin-top: 100px;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+  width: 100%;
+  position: relative;
+  left: 50%;
+  text-align: center;
+  top: 200px;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
 
 /* Cardholder Name */
 
-#cardholder {
+#cardholder, #issuerid {
   padding-left: 1rem;
   height: 50px;
   width: calc(100% - 1.1rem);
@@ -153,7 +157,7 @@ input:-webkit-autofill {
   transition: 0.1s;
   color: var(--label);
   background-color: var(--background);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   pointer-events: none;
 }
 
@@ -234,9 +238,7 @@ input:-webkit-autofill {
 
 /* Loader */
 
-.loader,
-.loader:before,
-.loader:after {
+.loader, .loader:before, .loader:after {
   border-radius: 50%;
   width: 1em;
   height: 1em;
@@ -267,8 +269,7 @@ input:-webkit-autofill {
   clip-path: circle(60px at center);
 }
 
-.loader:before,
-.loader:after {
+.loader:before, .loader:after {
   content: "";
   position: absolute;
   top: 0;
@@ -285,9 +286,7 @@ input:-webkit-autofill {
 }
 
 @-webkit-keyframes loading {
-  0%,
-  80%,
-  100% {
+  0%, 80%, 100% {
     box-shadow: 0 2.5em 0 -1.3em;
   }
   40% {
@@ -296,9 +295,7 @@ input:-webkit-autofill {
 }
 
 @keyframes loading {
-  0%,
-  80%,
-  100% {
+  0%, 80%, 100% {
     box-shadow: 0 2.5em 0 -1.3em;
   }
   40% {
@@ -545,8 +542,7 @@ input:-webkit-autofill {
   cursor: pointer;
 }
 
-label.switch:before,
-label.switch:after {
+label.switch:before, label.switch:after {
   display: block;
   position: absolute;
   content: "";
@@ -572,13 +568,13 @@ input[type="checkbox"] {
   display: none;
 }
 
-input[type="checkbox"]:checked + label:before {
+input[type="checkbox"]:checked+label:before {
   background-color: var(--switch-moon-color);
   -webkit-transform: translateX(32px);
   transform: translateX(32px);
 }
 
-input[type="checkbox"]:checked + label:after {
+input[type="checkbox"]:checked+label:after {
   -webkit-transform: translateX(48px) scale(1);
   transform: translateX(48px) scale(1);
 }
@@ -591,21 +587,22 @@ input[type="checkbox"]:checked + label:after {
 }
 
 .apm-buttons {
+  width: 350px;
   height: 40px;
   line-height: 40px;
   text-align: left;
   position: relative;
-  margin-top: 20px;
+  margin: 20px auto 0 auto;
 }
 
-.apm-buttons span,
-.text-appear span {
+.apm-buttons span, .text-appear span {
   display: inline-block;
   vertical-align: middle;
   line-height: normal;
   min-height: 40px;
   align-items: center;
   color: #acacac;
+  width: 100%;
 }
 
 /* Outcome pages */
@@ -780,10 +777,7 @@ input[type="checkbox"]:checked + label:after {
 }
 
 .klarnaDiv {
-  display: inline-block;
-  position: relative;
-  width: 600px;
-  margin: 60px auto 0;
+  margin-top: 150px;
 }
 
 #klarna-form {
@@ -807,6 +801,55 @@ input[type="checkbox"]:checked + label:after {
 #cards-payment {
   position: absolute;
 }
+
 #payment-options {
   color: #acacac;
+}
+
+.payment-option img {
+  max-height: 15px;
+}
+
+#cards-payment {
+  position: relative;
+  width: 320px;
+  margin: 0 auto;
+}
+
+.input-wrapper.ideal {
+  width: 400px;
+  margin: 0 auto 1.2rem;
+}
+
+.ideal-button {
+  position: fixed;
+  display: inline-block;
+}
+
+#issuers {
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  color: var(--input-text);
+  border: 1px solid var(--input-border);
+  background-color: var(--background);
+}
+
+#ideal-selector {
+  display: inline-block;
+}
+
+.ideal-pay {
+  border-radius: 3px;
+  background-color: var(--button-background);
+  color: var(--button-text);
+  font-weight: 600;
+  font-size: 15px;
+  height: 50px;
+  width: 100px;
+  border: none;
+  margin: 0 0 0 5px;
+  cursor: pointer;
+  -webkit-transition: color 0.3s cubic-bezier(0.4, 0, 0.6, 1);
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.6, 1);
 }
