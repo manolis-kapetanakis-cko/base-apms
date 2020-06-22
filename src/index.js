@@ -26,10 +26,6 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "./front-end/payment/index.html"));
 });
 
-app.get("/paywithklarna", (req, res) => {
-  res.sendFile(path.join(__dirname, "./front-end/klarna/init.html"));
-});
-
 app.get("/success", (req, res) => {
   res.sendFile(path.join(__dirname, "./front-end/outcome/success.html"));
 });
