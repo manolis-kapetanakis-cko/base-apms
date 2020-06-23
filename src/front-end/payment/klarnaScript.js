@@ -18,7 +18,7 @@ let promiseKlarna = new Promise((resolve, reject) => {
   window.klarnaAsyncCallback(client_token);
 });
 
-window.klarnaAsyncCallback = function (client_token) {
+window.klarnaAsyncCallback = function(client_token) {
   // INIT
   try {
     Klarna.Payments.init({
@@ -39,7 +39,7 @@ window.klarnaAsyncCallback = function (client_token) {
         // data
       },
       // callback
-      function (response) {
+      function(response) {
         console.log("Load Success:\n");
         console.log(response);
       }
@@ -50,7 +50,7 @@ window.klarnaAsyncCallback = function (client_token) {
 };
 
 // AUTHORISE
-let klarnaAuth = function () {
+let klarnaAuth = function() {
   try {
     Klarna.Payments.authorize(
       // options
@@ -73,19 +73,21 @@ let klarnaAuth = function () {
           country: "GB"
         }
       },
-      function (response) {
-        console.log("Response token: " + response.authorization_token);
+      function(response) {
         http(
           {
             method: "POST",
             route: "/klarnaPayment",
             body: {
-              authorization_token: response.authorization_token
+              authorization_token: response.authorization_token,
+              url: window.location.origin
             }
           },
           data => {
             console.log("Payment Successful:\n");
-            console.log(data);
+            payLoader.classList.add("hide");
+            console.log(data._links.redirect.href);
+            window.location = data._links.redirect.href;
           }
         );
       }

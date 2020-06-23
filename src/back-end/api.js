@@ -176,28 +176,28 @@ route.post("/klarnaPayment/", async (req, res) => {
     payment = await axios.post(
       API + "payments",
       {
-        amount: 1000,
+        amount: 2499,
         currency: "GBP",
+        success_url: req.body.url + "/success",
+        failure_url: req.body.url + "/fail",
         source: {
           type: "klarna",
           authorization_token: authorization_token,
           locale: "en-GB",
           purchase_country: "GB",
           tax_amount: 0,
-          billing_address: [
-            {
-              given_name: "John",
-              family_name: "Doe",
-              email: "johndoe@email.com",
-              title: "Mr",
-              street_address: "13 New Burlington St",
-              street_address2: "Apt 214",
-              postal_code: "W13 3BG",
-              city: "London",
-              phone: "01895808221",
-              country: "GB"
-            }
-          ],
+          billing_address: {
+            given_name: "John",
+            family_name: "Doe",
+            email: "johndoe@email.com",
+            title: "Mr",
+            street_address: "13 New Burlington St",
+            street_address2: "Apt 214",
+            postal_code: "W13 3BG",
+            city: "London",
+            phone: "01895808221",
+            country: "GB"
+          },
           products: [
             {
               name: "Brown leather belt",
