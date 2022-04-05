@@ -136,7 +136,7 @@ route.post("/klarnaSession", async (req, res) => {
   let payment;
   try {
     payment = await axios.post(
-      "https://api.sandbox.checkout.com/klarna-external/credit-sessions",
+      "https://api.sandbox.checkout.com/apms/klarna/credit-sessions",
       {
         purchase_country: "GB",
         currency: "GBP",
