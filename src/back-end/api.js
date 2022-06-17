@@ -113,7 +113,7 @@ route.post("/payWithAPM", async (req, res) => {
     payment = await cko.payments.request({
       source: {
         type: "paypal",
-        invoice_number: "CKO0340001"
+        invoice_number: "CKO0340001aa"
       },
       currency: "EUR",
       amount: 2000, // pence

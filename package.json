@@ -1,5 +1,5 @@
 {
-  "name": "3ds",
+  "name": "apms-with-card-payments-mbc",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",

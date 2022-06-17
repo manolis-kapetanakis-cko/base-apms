@@ -101,7 +101,7 @@ var state = {
 };
 
 // When Frames is ready
-Frames.addEventHandler(Frames.Events.READY, event => {
+Frames.addEventHandler(Frames.Events.READY, (event) => {
   pageLoader.style.display = "none";
   form.style.display = "block";
 });
@@ -113,7 +113,7 @@ nameInput.addEventListener("focus", () => {
 });
 
 // When the name input is blurred
-nameInput.addEventListener("blur", event => {
+nameInput.addEventListener("blur", (event) => {
   if (nameInput.value === "") {
     nameLabel.classList.remove("up");
   } else if (nameInput.value.length < 2) {
@@ -125,7 +125,7 @@ nameInput.addEventListener("blur", event => {
 });
 
 // When a Frames input is focused
-Frames.addEventHandler(Frames.Events.FRAME_FOCUS, event => {
+Frames.addEventHandler(Frames.Events.FRAME_FOCUS, (event) => {
   // Float the label up when the field is focused
   switch (event.element) {
     case "card-number":
@@ -145,7 +145,7 @@ Frames.addEventHandler(Frames.Events.FRAME_FOCUS, event => {
 });
 
 // When a Frames input is blurred
-Frames.addEventHandler(Frames.Events.FRAME_BLUR, event => {
+Frames.addEventHandler(Frames.Events.FRAME_BLUR, (event) => {
   // Float the label to the center if the input is empty
   switch (event.element) {
     case "card-number":
@@ -178,7 +178,7 @@ Frames.addEventHandler(Frames.Events.FRAME_BLUR, event => {
 });
 
 // When the validation changes for one of the Frames inputs
-Frames.addEventHandler(Frames.Events.FRAME_VALIDATION_CHANGED, event => {
+Frames.addEventHandler(Frames.Events.FRAME_VALIDATION_CHANGED, (event) => {
   switch (event.element) {
     case "card-number":
       event.isEmpty && !state[event.element].isFocused
@@ -203,7 +203,7 @@ Frames.addEventHandler(Frames.Events.FRAME_VALIDATION_CHANGED, event => {
 });
 
 // When the validation changes for the whole Frames form
-Frames.addEventHandler(Frames.Events.CARD_VALIDATION_CHANGED, event => {
+Frames.addEventHandler(Frames.Events.CARD_VALIDATION_CHANGED, (event) => {
   if (Frames.isCardValid() && nameInput.value.length > 2) {
     payButton.disabled = false;
   } else {
@@ -212,7 +212,7 @@ Frames.addEventHandler(Frames.Events.CARD_VALIDATION_CHANGED, event => {
 });
 
 // When Frames detects the payment method
-Frames.addEventHandler(Frames.Events.PAYMENT_METHOD_CHANGED, event => {
+Frames.addEventHandler(Frames.Events.PAYMENT_METHOD_CHANGED, (event) => {
   const pm = event.paymentMethod;
 
   if (!pm) {
@@ -226,7 +226,7 @@ Frames.addEventHandler(Frames.Events.PAYMENT_METHOD_CHANGED, event => {
 });
 
 // When Frames has tokenized the card
-Frames.addEventHandler(Frames.Events.CARD_TOKENIZED, event => {
+Frames.addEventHandler(Frames.Events.CARD_TOKENIZED, (event) => {
   payWithToken(event.token);
 });
 
@@ -248,14 +248,14 @@ payButton.addEventListener("click", function (event) {
 });
 
 // We call our back-end server to process the payment with the token
-const payWithToken = token => {
+const payWithToken = (token) => {
   http(
     {
       method: "POST",
       route: "/payWithToken",
       body: { token: token }
     },
-    data => {
+    (data) => {
       payLoader.classList.add("hide");
       console.log("API RESPONSE: ", data);
       handleResponse(data);
@@ -263,7 +263,7 @@ const payWithToken = token => {
   );
 };
 
-const payAPM = option => {
+const payAPM = (option) => {
   console.log("WLO: " + window.location.origin);
   http(
     {
@@ -274,10 +274,15 @@ const payAPM = option => {
         url: window.location.origin
       }
     },
-    data => {
+    (data) => {
       payLoader.classList.add("hide");
-      console.log(data.redirectLink);
-      window.location = data.redirectLink;
+      if (data.status !== "Declined") {
+        console.log(data.redirectLink);
+        window.location = data.redirectLink;
+      } else {
+        console.log("Payment declined - " + data.response_summary);
+      }
+
       console.log("API RESPONSE: ", data);
       // handleResponse(data);
     }
