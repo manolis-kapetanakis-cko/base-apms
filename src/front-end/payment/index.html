@@ -4,8 +4,7 @@
     <title>Payment Demo</title>
     <link rel="stylesheet" href="./style.css" />
     <link rel="icon" href="./images/favicon.ico" type="image/ico" />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
   </head>
 
   <body class="light">
@@ -30,14 +29,14 @@
           name="payment"
           value="cards"
           onclick="paymentOption('cards')"
-          />
+        />
         <label for="cards">Pay with <i>Credit/Debit Card</i></label>
         <img src="images/card-icons/visa.svg" alt="visa" />
         <img src="images/card-icons/mastercard.svg" alt="mastercard" />
         <img
           src="images/card-icons/american express.svg"
           alt="carte-bancaire"
-          />
+        />
       </div>
       <div class="payment-option">
         <input
@@ -46,9 +45,9 @@
           name="payment"
           value="ideal"
           onclick="paymentOption('ideal')"
-          />
+        />
         <label for="ideal">Pay with <i>iDeal</i></label>
-        <img src="images/card-icons/IDEAL_Logo.png" alt="ideal" />
+        <img src="images/card-icons/ideal.svg" alt="ideal" />
       </div>
       <div class="payment-option">
         <input
@@ -57,9 +56,9 @@
           name="payment"
           value="klarna"
           onclick="paymentOption('klarna')"
-          />
+        />
         <label for="klarna">Pay with <i>Klarna</i></label>
-        <img src="images/card-icons/klarna.png" alt="klarna" />
+        <img src="images/card-icons/klarna.svg" alt="klarna" />
       </div>
       <div class="payment-option">
         <input
@@ -68,12 +67,12 @@
           name="payment"
           value="apms"
           onclick="paymentOption('apms')"
-          />
+        />
         <label for="apms">Pay with <i>other Alternative Payments</i></label>
-        <img src="images/card-icons/sofort.png" alt="sofort" />
-        <img src="images/card-icons/p24.png" alt="p24" />
-        <img src="images/card-icons/giropay.png" alt="giropay" />
-        <img src="images/card-icons/paypal-icon.png" alt="paypal" />
+        <img src="images/card-icons/sofort.svg" alt="sofort" />
+        <img src="images/card-icons/p24.svg" alt="p24" />
+        <img src="images/card-icons/giropay.svg" alt="giropay" />
+        <img src="images/card-icons/paypal.svg" alt="paypal" />
       </div>
       <hr />
     </div>
@@ -91,7 +90,7 @@
               id="cardholder"
               placeholder="John Smith"
               autocomplete="cc-name"
-              />
+            />
           </div>
           <!-- Card Number -->
           <div class="input-wrapper card-number">
@@ -160,29 +159,29 @@
           class="apmImg"
           alt="paySofort"
           onclick="payAPM('sofort')"
-          src="images/card-icons/sofort.png"
-          />
+          src="images/card-icons/sofort.svg"
+        />
         <input
           type="image"
           class="apmImg"
           alt="payP24"
           onclick="payAPM('p24')"
-          src="images/card-icons/p24.png"
-          />
+          src="images/card-icons/p24.svg"
+        />
         <input
           type="image"
           class="apmImg"
           alt="giropay"
           onclick="payAPM('giropay')"
-          src="images/card-icons/giropay.png"
-          />
+          src="images/card-icons/giropay.svg"
+        />
         <input
           type="image"
           class="apmImg"
           alt="paypal"
           onclick="payAPM('paypal')"
-          src="images/card-icons/paypal-icon.png"
-          />
+          src="images/card-icons/paypal.svg"
+        />
       </div>
     </div>
 
